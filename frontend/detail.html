@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du Livre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/detail.css">
+</head>
+<body>
+
+<header>
+  Détails du Livre
+</header>
+
+<div class="main-container">
+  <div class="left-section" id="leftDetails">
+    <!-- Image + boutons ici -->
+  </div>
+
+  <div class="right-section">
+    <div class="livre-titre" id="titreLivre"></div>
+    <div class="livre-auteur" id="auteurLivre"></div>
+    <div class="livre-resume" id="resumeLivre"></div>
+
+    <h3 style="margin-top: 30px;">📚 Livres que vous pourriez aimer :</h3>
+    <div id="livresSimilaires" class="livres-sim-container"></div>
+    <div class="pagination-btns">
+      <button id="btnPrev">← Précédent</button>
+      <button id="btnNext">Suivant →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let livresSimilaires = [];
+  let currentIndex = 0;
+  const livresParPage = 4;
+
+  function afficherLivresSimilaires() {
+    const container = document.getElementById('livresSimilaires');
+    container.innerHTML = '';
+
+    const fin = Math.min(currentIndex + livresParPage, livresSimilaires.length);
+    for (let i = currentIndex; i < fin; i++) {
+      const livre = livresSimilaires[i];
+      const card = document.createElement('div');
+      card.className = 'livre-card';
+
+      card.innerHTML = `
+        <img src="${livre.photo_couverture}" alt="Couverture" class="mini-couverture">
+        <p class="mini-titre">${livre.titre}</p>
+        <p class="mini-auteur">${livre.auteur}</p>
+      `;
+      card.addEventListener('click', () => {
+        window.location.href = `detail.html?id=${livre.id}`;
+      });
+      container.appendChild(card);
+    }
+
+    document.getElementById('btnPrev').disabled = currentIndex === 0;
+    document.getElementById('btnNext').disabled = currentIndex + livresParPage >= livresSimilaires.length;
+  }
+
+  function chargerLivresSimilaires(genre, livreId) {
+    fetch(`http://localhost:3000/api/livres?genre=${encodeURIComponent(genre)}&exclude=${livreId}`)
+      .then(res => res.json())
+      .then(data => {
+        livresSimilaires = data;
+        currentIndex = 0;
+        afficherLivresSimilaires();
+      })
+      .catch(err => {
+        console.error("Erreur lors du chargement des livres similaires :", err);
+      });
+  }
+
+  document.getElementById('btnPrev').addEventListener('click', () => {
+    if (currentIndex >= livresParPage) {
+      currentIndex -= livresParPage;
+      afficherLivresSimilaires();
+    }
+  });
+
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (currentIndex + livresParPage < livresSimilaires.length) {
+      currentIndex += livresParPage;
+      afficherLivresSimilaires();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const livreId = params.get('id');
+
+    if (livreId) {
+      fetch(`http://localhost:3000/api/livres/${livreId}`)
+        .then(res => res.json())
+        .then(livre => {
+          document.getElementById('leftDetails').innerHTML = `
+            <img src="${livre.photo_couverture}" alt="Couverture du livre" class="livre-couverture">
+            <div class="action-buttons">
+              <a href="${livre.fichier_pdf}" download><button>⬇️ Télécharger</button></a>
+              <a href="lecture.html?id=${livre.id}"><button>📖 Lire</button></a>
+            </div>
+          `;
+          document.getElementById('titreLivre').textContent = livre.titre;
+          document.getElementById('auteurLivre').textContent = "📖 Écrit par : " + livre.auteur;
+          document.getElementById('resumeLivre').textContent = livre.resume;
+
+          chargerLivresSimilaires(livre.genre, livre.id);
+        })
+        .catch(err => {
+          console.error("Erreur :", err);
+          document.getElementById('leftDetails').textContent = "Erreur de chargement.";
+        });
+    } else {
+      document.getElementById('leftDetails').textContent = "Aucun livre sélectionné.";
+    }
+  });
+</script>
+
+</body>
+</html>

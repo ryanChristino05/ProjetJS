@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">4</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">a39dec80-d0b4-4c21-9519-144113392f66</dc:identifier>
+        <dc:title>Et j'ai choisi de vivre</dc:title>
+        <dc:creator opf:file-as="TRECOURT, MARILYSE" opf:role="aut">MARILYSE TRECOURT</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (8.2.100) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2017-08-10T15:51:13+00:00</dc:date>
+        <dc:description>« — Allô, pouvez-vous envoyer une ambulance ? C’est pour mon mari. Il… il est inconscient. »Alice et Maxime avaient un rêve : s’installer au Etats-Unis pour ouvrir une boulangerie en plein cœur de Manhattan. La vie les a exaucés, même au-delà de leurs espoirs.Jusqu’au jour où le cauchemar commence. Maxime est retrouvé inanimé, souffrant d’un traumatisme crânien. Que lui est-il arrivé ? Pourquoi Alice est-elle suspectée, alors qu’elle l’aime depuis leur premier regard ? Que cherche-t-elle à cacher, au péril de sa propre vie ?Une histoire qui sonde les secrets qui sommeillent au fond de nous, ceux que l’on ne se pardonne pas, ceux qui reviennent nous hanter alors qu’on les croyait enfouis dans les cendres du passé.Dans ce cinquième roman, Marilyse Trécourt conjugue suspense et émotions, amour et mensonges, sacrifices et culpabilité, tout en vous posant une question : et vous, avez-vous choisi de vivre ?</dc:description>
+        <dc:publisher>MARILYSE TRECOURT</dc:publisher>
+        <dc:language>fra</dc:language>
+        <dc:subject>suspense</dc:subject>
+        <dc:subject>amour</dc:subject>
+        <dc:subject>émotions</dc:subject>
+        <meta name="calibre:timestamp" content="2025-04-14T15:32:04.308847+00:00"/>
+        <meta name="calibre:title_sort" content="Et j'ai choisi de vivre"/>
+    </metadata>
+    <guide>
+        <reference type="cover" title="Couverture" href="Et j'ai choisi de vivre - MARILYSE TRECOURT.jpg"/>
+    </guide>
+</package>

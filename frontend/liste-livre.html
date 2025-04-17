@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Livres</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #222629, #474B4F);
+      margin: 0;
+      padding: 0;
+      color: #F5F5F5;
+    }
+    header {
+      background: linear-gradient(45deg, #86C232, #61892F);
+      color: #222629;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .book-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .book-card {
+      background: #2B2F33;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+    .book-card:hover {
+      transform: scale(1.03);
+    }
+    .book-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .book-info {
+      padding: 15px;
+    }
+    .book-info h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #86C232;
+    }
+    .book-info p {
+      font-size: 14px;
+      color: #CCC;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    .actions button {
+      background-color: #86C232;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #222629;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .actions button:hover {
+      background-color: #61892F;
+    }
+  </style>
+</head>
+<body>
+
+  <header>📚 Liste des Livres</header>
+  <div class="book-container" id="bookList"></div>
+
+  <script>
+    async function chargerLivres() {
+      try {
+        const res = await fetch('/api/livres');
+        const livres = await res.json();
+
+        const bookList = document.getElementById('bookList');
+        bookList.innerHTML = '';
+
+        livres.forEach(livre => {
+          const card = document.createElement('div');
+          card.className = 'book-card';
+
+          card.innerHTML = `
+            <img src="${livre.photo_couverture}" alt="${livre.titre}">
+            <div class="book-info">
+              <h3>${livre.titre}</h3>
+              <p><strong>Auteur :</strong> ${livre.auteur}</p>
+              <p><strong>Genre :</strong> ${livre.genre}</p>
+            </div>
+            <div class="actions">
+              <button onclick="supprimerLivre('${livre.id}')">🗑️ Supprimer</button>
+              <button onclick="modifierLivre('${livre.id}')">✏️ Modifier</button>
+            </div>
+          `;
+          bookList.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error('Erreur lors du chargement des livres:', err);
+      }
+    }
+
+    async function supprimerLivre(id) {
+      if (confirm("❗ Confirmer la suppression de ce livre ?")) {
+        try {
+          const res = await fetch(`/api/supprimer-livre/${id}`, {
+            method: 'DELETE'
+          });
+
+          if (res.ok) {
+            alert('✅ Livre supprimé !');
+            chargerLivres();
+          } else {
+            const data = await res.json();
+            alert(`❌ Erreur : ${data.message}`);
+          }
+        } catch (err) {
+          alert("❌ Erreur lors de la suppression.");
+        }
+      }
+    }
+
+    function modifierLivre(id) {
+      // Redirige vers une page de modification ou tu peux aussi ouvrir une popup
+      window.location.href = `/modifier-livre.html?id=${id}`;
+    }
+
+    window.onload = chargerLivres;
+  </script>
+
+</body>
+</html>

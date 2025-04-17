@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bibliothèque</title>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+
+  <script src="static/login.js"></script>
+</head>
+<body>
+    <header>
+    <div class="logo">
+      <h1>MonLogo</h1>
+    </div>
+
+    <div class="search-bar-container">
+      <input type="text" id="searchBar" placeholder="Rechercher par titre, auteur ou genre..." oninput="rechercherCategorie()">
+    </div>
+    
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
+    <nav class="nav-links">
+      <a href="#" id="accueil-link">Accueil</a>
+      <a href="#" id="categories-link">Catégories</a>
+      <a href="#" id="contact-link">Contact</a>
+      <a href="#" id="about-link">À propos</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="connexion.html" class="btn-login">Se connecter</a>
+      <a href="login.html" class="btn-signup">S’inscrire</a>
+    </div>
+  </header>
+  <!-- Section Accueil -->
+
+  <!-- Section Catégorie -->
+  <div id="categories" class="content-section hidden">
+
+  
+    <section class="suggestion-wrapper">
+      <h3>✨ Suggestions pour vous</h3>
+      <div class="suggestion-container" id="suggestionContainer"></div>
+    </section>
+  
+    <div class="champ-livre">
+      <div class="category-buttons">
+        <h3>📚 Catégories</h3>
+        <div id="boutons-categories">
+          <!-- Les boutons seront insérés ici dynamiquement -->
+        </div>
+      </div>
+    </div>
+    
+      
+      <div class="book-container" id="bookContainer"></div>
+    </div>
+  </div>
+    <!-- Section Contacte -->
+    <div id="contact" class="content-section hidden">
+      <h2>Contactez-nous</h2>
+      <p>Nous sommes là pour vous aider ! N'hésitez pas à nous envoyer un message ou à nous appeler.</p>
+      <form>
+        <label for="name">Nom :</label>
+        <input type="text" id="name" placeholder="Votre nom complet" required />
+        
+        <label for="email">Email :</label>
+        <input type="email" id="email" placeholder="Votre adresse email" required />
+        
+        <label for="message">Message :</label>
+        <textarea id="message" placeholder="Votre message ici..." rows="5" required></textarea>
+        
+        <button type="submit" style="background-color: var(--vert-fluo); padding: 10px 20px; border: none; color: white; font-weight: bold; border-radius: 4px; margin-top: 10px;">Envoyer</button>
+      </form>
+      <p style="margin-top: 20px;">Ou contactez-nous directement :</p>
+      <ul>
+        <li><strong>Email :</strong> contact@votreentreprise.com</li>
+        <li><strong>Téléphone :</strong> +123 456 7890</li>
+        <li><strong>Adresse :</strong> [Votre adresse]</li>
+      </ul>
+    </div>
+      <!-- Section à propos  -->
+  <div id="about" class="content-section hidden">
+    <h2>À propos de nous</h2>
+    <p>Bienvenue sur notre site web ! Nous sommes passionnés par [votre activité ou domaine], et notre mission est de [objectif].</p>
+    <p>Nous nous engageons à offrir des produits/services de qualité pour répondre à vos besoins. Explorez notre plateforme et découvrez ce que nous avons à offrir.</p>
+    <ul>
+      <li><strong>Fondation :</strong> [Année de fondation]</li>
+      <li><strong>Adresse :</strong> [Adresse de l'entreprise]</li>
+      <li><strong>Équipe :</strong> [Nombre ou noms des membres clés]</li>
+    </ul>
+    <img src="images/image.jpg" alt="Notre équipe" style="max-width: 100%; border-radius: 8px; margin-top: 20px;">
+  </div>
+    <!-- Popup Profil -->
+    <div class="profil-popup hidden" id="profilPopup">
+      <div class="popup-content">
+        <span class="close-btn" id="closeProfil">&times;</span>
+        <h2>Mon Profil</h2>
+        <p><strong>Nom d'utilisateur :</strong> <span id="profilUsername"></span></p>
+        <p><strong>Email :</strong> <span id="profilEmail"></span></p>
+        <button id="logoutBtn">Se déconnecter</button>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <h3>MonLogo</h3>
+        <p>Merci de visiter notre site. Suivez-nous sur les réseaux sociaux ou contactez-nous pour toute information.</p>
+        <ul class="socials">
+          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MonLogo | Tous droits réservés</p>
+      </div>
+    </footer>
+    
+ <script src="static/script.js"></script>
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector(".auth-buttons");
+    const username = sessionStorage.getItem("username");
+    const email = sessionStorage.getItem("email");
+
+    const profilPopup = document.getElementById("profilPopup");
+    const closeProfil = document.getElementById("closeProfil");
+    const profilUsername = document.getElementById("profilUsername");
+    const profilEmail = document.getElementById("profilEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const sections = document.querySelectorAll(".content-section");
+    const accueilLink = document.getElementById("accueil-link");
+    const categoriesLink = document.getElementById("categories-link");
+    const contactLink = document.getElementById("contact-link");
+    const aboutLink = document.getElementById("about-link");
+
+    //Pour charger le genre dynamiquement 
+  
+  async function chargerGenres() {
+    try {
+      const res = await fetch('/api/genres');
+      const genres = await res.json();
+
+      const container = document.getElementById('boutons-categories');
+      container.innerHTML = ''; // au cas où
+
+      // Bouton "Tous"
+      const boutonTous = document.createElement('button');
+      boutonTous.textContent = 'Tous';
+      boutonTous.onclick = () => filtrerParCategorie('all');
+      container.appendChild(boutonTous);
+
+      // Boutons pour chaque genre
+      genres.forEach(genre => {
+        const bouton = document.createElement('button');
+        bouton.textContent = genre;
+        bouton.onclick = () => filtrerParCategorie(genre);
+        container.appendChild(bouton);
+      });
+
+    } catch (err) {
+      console.error('Erreur lors du chargement des genres :', err);
+    }
+  }
+
+  // Appel au chargement de la page
+  window.onload = chargerGenres;
+
+
+    // Fonction pour afficher la section correspondante
+    function showSection(sectionId) {
+      sections.forEach(section => {
+        if (section.id === sectionId) {
+          section.classList.remove("hidden");
+        } else {
+          section.classList.add("hidden");
+        }
+      });
+    }
+
+    accueilLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("accueil");
+    });
+
+    categoriesLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("categories");
+    });
+
+    contactLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("contact");
+    });
+
+    aboutLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("about");
+    });
+
+    if (username && email) {
+      btn.innerHTML = `
+        <a href="#" class="btn-login" id="openProfil">Profil</a>
+        <a href="#" class="btn-signup" id="logoutDirect">Se déconnecter</a>
+      `;
+
+      document.getElementById("openProfil").addEventListener("click", (e) => {
+        e.preventDefault();
+        profilUsername.textContent = username;
+        profilEmail.textContent = email;
+        profilPopup.classList.remove("hidden");
+      });
+
+      document.getElementById("logoutDirect").addEventListener("click", (e) => {
+        e.preventDefault();
+        sessionStorage.clear();
+        window.location.reload();
+      });
+    }
+
+    if (closeProfil) {
+      closeProfil.addEventListener("click", () => {
+        profilPopup.classList.add("hidden");
+      });
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        sessionStorage.clear();
+        window.location.reload();
+      });
+    }
+
+    // Afficher la page d'accueil par défaut au chargement
+    showSection("categories");
+  });
+</script>
+
+</body>
+</html>

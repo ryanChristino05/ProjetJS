@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un Livre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      background: linear-gradient(45deg, #86C232, #61892F);
+      color: #222629;
+      width: 100%;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      margin-top: 30px;
+      width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #86C232;
+      color: #222629;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #61892F;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Modifier un Livre</h1>
+
+  <form id="modifierForm">
+    <input type="text" id="titre" placeholder="Titre du livre" required>
+    <input type="text" id="auteur" placeholder="Auteur" required>
+    <input type="text" id="genre" placeholder="Genre du livre (ex: Science-Fiction, Romance...)" required>
+    <input type="text" id="photo_couverture" placeholder="Lien vers la photo de couverture" required>
+    <input type="text" id="fichier_pdf" placeholder="Lien vers le fichier PDF" required>
+    <textarea id="resume" placeholder="Résumé du livre"></textarea>
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+      alert("❌ ID du livre non fourni !");
+      window.location.href = "liste-livres.html";
+    }
+
+    async function chargerLivre() {
+      try {
+        const res = await fetch(`/api/livre/${id}`);
+        const livre = await res.json();
+
+        document.getElementById('titre').value = livre.titre || '';
+        document.getElementById('auteur').value = livre.auteur || '';
+        document.getElementById('photo_couverture').value = livre.photo_couverture || '';
+        document.getElementById('fichier_pdf').value = livre.fichier_pdf || '';
+        document.getElementById('resume').value = livre.resume || '';
+
+        // Sélectionne le genre automatiquement
+        const genreSelect = document.getElementById('genre');
+        if (livre.genre) {
+          genreSelect.value = livre.genre;
+        }
+
+      } catch (err) {
+        alert("❌ Erreur lors du chargement du livre.");
+        console.error(err);
+      }
+    }
+
+    document.getElementById('modifierForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const donnees = {
+        titre: document.getElementById('titre').value,
+        auteur: document.getElementById('auteur').value,
+        genre: document.getElementById('genre').value,
+        photo_couverture: document.getElementById('photo_couverture').value,
+        fichier_pdf: document.getElementById('fichier_pdf').value,
+        resume: document.getElementById('resume').value,
+      };
+
+      try {
+        const res = await fetch(`/api/modifier-livres/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(donnees)
+        });
+
+        if (res.ok) {
+          alert("✅ Livre modifié avec succès !");
+          window.location.href = "liste-livre.html";
+        } else {
+          const data = await res.json();
+          alert("❌ Erreur : " + data.message);
+        }
+
+      } catch (err) {
+        alert("❌ Erreur lors de la modification.");
+        console.error(err);
+      }
+    });
+
+    chargerLivre();
+  </script>
+
+</body>
+</html>

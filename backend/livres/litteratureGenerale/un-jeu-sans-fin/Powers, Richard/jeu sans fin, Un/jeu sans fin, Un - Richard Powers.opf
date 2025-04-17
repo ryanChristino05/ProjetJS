@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">8</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">96f4ed83-f92d-4a84-8447-d660284d0f62</dc:identifier>
+        <dc:title>Un jeu sans fin</dc:title>
+        <dc:creator opf:file-as="Powers, Richard" opf:role="aut">Richard Powers</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (8.2.100) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2025-02-05T08:23:06+00:00</dc:date>
+        <dc:description>&lt;div&gt;
+&lt;p&gt;Makatea, île oubliée du Pacifique, porte encore les stigmates de décennies d'extraction minière. Aujourd'hui, une entreprise américaine envisage d'y implanter sa base pour la prochaine grande aventure de l'humanité : la construction de villes flottantes. Mais la population est divisée. Aux Etats-Unis, Todd Keane a révolutionné l'IA. Alors que la maladie ronge ses souvenirs, le milliardaire livre son ultime confession. Son histoire est liée à celles des habitants de l'atoll polynésien. &lt;/p&gt;
+&lt;p&gt;Personnages magnifiques, intrigue virtuose, souffle romanesque intact : Richard Powers est au sommet de son art.&lt;/p&gt;&lt;/div&gt;</dc:description>
+        <dc:publisher>Éditions Actes Sud</dc:publisher>
+        <dc:identifier opf:scheme="ISBN">233020034X</dc:identifier>
+        <dc:language>fra</dc:language>
+        <meta name="calibre:timestamp" content="2025-04-14T15:34:12.459401+00:00"/>
+        <meta name="calibre:title_sort" content="jeu sans fin, Un"/>
+    </metadata>
+    <guide>
+        <reference type="cover" title="Couverture" href="jeu sans fin, Un - Richard Powers.jpg"/>
+    </guide>
+</package>

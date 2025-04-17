@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">9</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">44fae4f2-5867-4a38-b8eb-e2d95d28e66c</dc:identifier>
+        <dc:title>Un merci de trop</dc:title>
+        <dc:creator opf:file-as="Ponte Carene" opf:role="aut">Ponte Carene</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (8.2.100) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2015-03-15T23:00:00+00:00</dc:date>
+        <dc:description>S&amp;rsquo;il fallait d&amp;eacute;crire Juliette en un seul mot, transparente serait sans nul doute le bon. Oui, c&amp;rsquo;est &amp;ccedil;a, transparente. Depuis qu&amp;rsquo;elle est toute petite Juliette a toujours fait ce que l&amp;rsquo;on attendait d&amp;rsquo;elle. Pour ne pas d&amp;eacute;plaire, pour ne pas d&amp;eacute;cevoir. Mettant de c&amp;ocirc;t&amp;eacute; ses r&amp;ecirc;ves et celle qu&amp;rsquo;elle est vraiment. R&amp;eacute;sultat, &amp;agrave; 30 ans, elle m&amp;egrave;ne une vie sans relief et ennuyeuse au possible. Une vie dans laquelle choisir entre lasagnes et sushis est un &amp;eacute;v&amp;eacute;nement. Pourtant, elle se sent de plus en plus &amp;agrave; l&amp;rsquo;&amp;eacute;troit dans cette vie, dans cette peau. Elle a envie de crier qu&amp;rsquo;elle n&amp;rsquo;est pas cette fille sans personnalit&amp;eacute;. Elle a envie d&amp;rsquo;aborder celui qu&amp;rsquo;elle croise tous les jours dans son immeuble. Pour lui dire qu&amp;rsquo;il lui plait. Et par dessus tout, elle a envie d&amp;rsquo;enfin r&amp;eacute;aliser son r&amp;ecirc;ve, celui de devenir &amp;eacute;crivain. Il n&amp;rsquo;est jamais trop tard pour devenir soi. C&amp;rsquo;est ce que va d&amp;eacute;couvrir Juliette au d&amp;eacute;tour d&amp;rsquo;un merci, un merci de trop. M&amp;ecirc;me si elle est loin d&amp;rsquo;imaginer ce qui va en d&amp;eacute;couler&amp;nbsp;!</dc:description>
+        <dc:publisher>Librinova</dc:publisher>
+        <dc:identifier opf:scheme="MOBI-ASIN">B00URK6MD2</dc:identifier>
+        <dc:identifier opf:scheme="ISBN">9791026201557</dc:identifier>
+        <dc:language>fra</dc:language>
+        <meta name="calibre:timestamp" content="2025-04-14T15:34:38.932105+00:00"/>
+        <meta name="calibre:title_sort" content="Un merci de trop"/>
+    </metadata>
+    <guide>
+        <reference type="cover" title="Couverture" href="Un merci de trop - Ponte Carene.jpg"/>
+    </guide>
+</package>
