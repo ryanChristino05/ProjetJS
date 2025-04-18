@@ -32,7 +32,26 @@
     </div>
   </header>
   <!-- Section Accueil -->
+  <div id="accueil" class="content-section hidden">
 
+  
+    <section class="suggestion-wrapper">
+      <h3>✨ Suggestions pour vous</h3>
+      <div class="suggestion-container" id="suggestionContainer"></div>
+    </section>
+  
+    <div class="champ-livre">
+      <div class="category-buttons">
+        <h3>📚 Catégories</h3>
+        <div id="boutons-categories">
+          <!-- Les boutons seront insérés ici dynamiquement -->
+        </div>
+      </div>
+    </div>
+    
+      
+      <div class="book-container" id="bookContainer"></div>
+    </div>
   <!-- Section Catégorie -->
   <div id="categories" class="content-section hidden">
 
@@ -233,7 +252,7 @@
     }
 
     // Afficher la page d'accueil par défaut au chargement
-    showSection("categories");
+    showSection("accueil");
   });
 </script>
 
