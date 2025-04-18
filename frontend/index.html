@@ -32,26 +32,7 @@
     </div>
   </header>
   <!-- Section Accueil -->
-  <div id="accueil" class="content-section hidden">
-
   
-    <section class="suggestion-wrapper">
-      <h3>✨ Suggestions pour vous</h3>
-      <div class="suggestion-container" id="suggestionContainer"></div>
-    </section>
-  
-    <div class="champ-livre">
-      <div class="category-buttons">
-        <h3>📚 Catégories</h3>
-        <div id="boutons-categories">
-          <!-- Les boutons seront insérés ici dynamiquement -->
-        </div>
-      </div>
-    </div>
-    
-      
-      <div class="book-container" id="bookContainer"></div>
-    </div>
   <!-- Section Catégorie -->
   <div id="categories" class="content-section hidden">
 
@@ -107,7 +88,7 @@
       <li><strong>Adresse :</strong> [Adresse de l'entreprise]</li>
       <li><strong>Équipe :</strong> [Nombre ou noms des membres clés]</li>
     </ul>
-    <img src="images/image.jpg" alt="Notre équipe" style="max-width: 100%; border-radius: 8px; margin-top: 20px;">
+    <img src="membres/" alt="Notre équipe" style="max-width: 100%; border-radius: 8px; margin-top: 20px;">
   </div>
     <!-- Popup Profil -->
     <div class="profil-popup hidden" id="profilPopup">
@@ -252,7 +233,7 @@
     }
 
     // Afficher la page d'accueil par défaut au chargement
-    showSection("accueil");
+    showSection("categories");
   });
 </script>
 
